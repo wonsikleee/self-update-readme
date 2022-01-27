@@ -1,41 +1,50 @@
+# Name of workflow
 name: Build README
 
+# Run workflow at 12:01 on Sunday, Wednesday, and Friday
 on:
-  push:
   workflow_dispatch:
   schedule:
-    - cron:  '32 * * * *'
+    - cron: '1 12 * * 0,3,5'
+  # Run workflow on pushes to main branch
+  push:
+    branches:
+      - main
 
+# Steps to carry out
 jobs:
   build:
+    # Create a ubuntu virtual machine
     runs-on: ubuntu-latest
+
+    # Checkout repo code
     steps:
-    - name: Check out repo
+    - name: Checkout repo
       uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
+
+    # Install node
+    - name: Use Node.js
+      uses: actions/setup-node@v1
       with:
-        python-version: 3.8
-    - uses: actions/cache@v2
-      name: Configure pip caching
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-    - name: Install Python dependencies
-      run: |
-        python -m pip install -r requirements.txt
-    - name: Update README
+        node-version: 10.16
+    - run: npm install
+    - run: npm run build --if-present
+    - run: npm test
       env:
-        SIMONW_TOKEN: ${{ secrets.SIMONW_TOKEN }}
+        CI: true
+
+    # Run script "updateReadme.js" 
+    - name: Update README
       run: |-
-        python build_readme.py
+        node updateReadme.js
         cat README.md
-    - name: Commit and push if README changed
+
+    # Commit changes
+    - name: Commit and push if changed
       run: |-
         git diff
         git config --global user.email "readme-bot@example.com"
         git config --global user.name "README-bot"
-        git diff --quiet || (git add README.md && git commit -m "Updated README")
+        git add -A
+        git commit -m "Updated articles" || exit 0
         git push
