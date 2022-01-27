@@ -1,9 +1,11 @@
 {
-  "name": "Wonsik",
+  "name": "self-update-readme",
   "version": "1.0.0",
   "description": "Personal GitHub README repo",
-  "main": "updateReadme.js",
-  "scripts": {},
+  "main": "index.js",
+  "scripts": {
+      "lint": "eslint ."
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wonsikleee/self-update-readme.git"
