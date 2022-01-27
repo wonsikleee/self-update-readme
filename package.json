@@ -4,7 +4,7 @@
   "description": "Personal GitHub README repo",
   "main": "index.js",
   "scripts": {
-      "lint": "eslint ."
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -14,5 +14,7 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wonsikleee/self-update-readme/issues"
-  }
+  },
+  "homepage": "https://github.com/wonsikleee/self-update-readme#readme",
+  "keywords": []
 }
