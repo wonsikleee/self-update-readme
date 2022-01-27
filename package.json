@@ -1,0 +1,16 @@
+{
+  "name": "Wonsik Lee",
+  "version": "1.0.0",
+  "description": "Personal GitHub README repo",
+  "main": "updateReadme.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wonsikleee/self-update-readme.git"
+  },
+  "author": "Daniel Curtis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wonsikleee/self-update-readme/issues"
+  }
+}
