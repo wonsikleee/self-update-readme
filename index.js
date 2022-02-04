@@ -9,9 +9,10 @@ function readWriteAsync() {
     }
 
     // Update the README
-    const updatedReadMe = data.replace(
-        "Test"
-    );
+    //const updatedReadMe = data.replace(
+    //    "Test"
+    //);
+    let updatedReadMe = "Hello world."
 
     // Write the new README
     fs.writeFile('README.md', updatedReadMe, 'utf-8', (err) => {
