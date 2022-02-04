@@ -8,8 +8,7 @@ function readWriteAsync() {
       throw err;
     }
 
-    // Replace text using regex: "I'm writing: ...replace... ![Build"
-    // Regex101.com is a lifesaver!
+    // Update the README
     const updatedReadMe = data.replace(
         "Test"
     );

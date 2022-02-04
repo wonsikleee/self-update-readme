@@ -3,7 +3,9 @@ name: Build README
 
 # Run workflow at 12:01 on Sunday, Wednesday, and Friday
 on:
+  # Manually trigger this action
   workflow_dispatch:
+  # Schedule the action interval
   schedule:
     - cron: '1 12 * * 0,3,5'
   # Run workflow on pushes to main branch
@@ -33,15 +35,14 @@ jobs:
       env:
         CI: true
 
-    # Run script "updateReadme.js" 
     - name: Update README
       run: |-
         node index.js
-        cat README.md
 
     # Commit changes
     - name: Commit and push if changed
       run: |-
+        cat README.md
         git diff
         git config --global user.email "readme-bot@example.com"
         git config --global user.name "README-bot"
